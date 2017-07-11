@@ -56,7 +56,7 @@ void OpenseesModelGenerator::GenRandPara(){
     if(random()>0.5)    //steel02
     {
         Steel02 *s=new Steel02;
-        s->tag=10;
+        s->tag=101;
         s->E0=random(_randParas["E0"].min,_randParas["E0"].max);
         s->fy=random(_randParas["fy"].min,_randParas["fy"].max);
         s->b=random(_randParas["b"].min,_randParas["b"].max);
@@ -75,12 +75,46 @@ void OpenseesModelGenerator::GenRandPara(){
         s->eult=random(_randParas["eult"].min,_randParas["eult"].max);
         steel.push_back(s);
     }
+
+    // unconfined concrete
+    for(unsigned int i=0;i<concrete.size();++i)
+    {
+        delete concrete[i];
+    }
+    concrete.clear();
+    if(random()>0.5)    //concrete01
+    {
+        Concrete01 *con=new Concrete01;
+        con->tag=1;
+        con->fpc=random(_randParas["fpc"].min,_randParas["fpc"].max);
+        con->epsc0=random(_randParas["epsc0"].min,_randParas["epsc0"].max);
+        con->fpcu = con->fpc * random(_randParas["Kres"].min,_randParas["Kres"].max);
+        con->epsU=random(_randParas["epsU"].min,_randParas["epsU"].max);
+        concrete.push_back(con);
+    }
+    else    //concrete02
+    {
+        Concrete02 *con=new Concrete02;
+        con->tag=1;
+        con->fpc=random(_randParas["fpc"].min,_randParas["fpc"].max);
+        con->epsc0=random(_randParas["epsc0"].min,_randParas["epsc0"].max);
+        con->fpcu = con->fpc * random(_randParas["Kres"].min,_randParas["Kres"].max);
+        con->epsU=random(_randParas["epsU"].min,_randParas["epsU"].max);
+        con->lambda=random(_randParas["lambda"].min,_randParas["lambda"].max);
+        con->ft=random(_randParas["ft"].min,_randParas["ft"].max);
+        con->Ets=random(_randParas["Ets"].min,_randParas["Ets"].max);
+        concrete.push_back(con);
+    }
+
+    //confined concrete
+    //TODO
 }
 
 
 void OpenseesModelGenerator::WriteModel(){
     WriteMain();
     WriteSteel();
+    WriteConcrete();
 
 }
 
@@ -99,7 +133,16 @@ void OpenseesModelGenerator::WriteSteel(){
 }
 
 void OpenseesModelGenerator::WriteConcrete(){
-
+    ofstream fout("concrete.tcl");
+    for(unsigned int i=0; i<concrete.size();++i)
+    {
+        fout<<concrete[i]->toTcl().c_str();
+    }
+    for(unsigned int i=0; i<confinedCon.size();++i)
+    {
+        fout<<confinedCon[i]->toTcl().c_str();
+    }
+    fout.close();
 }
 
 void OpenseesModelGenerator::WriteSection(){

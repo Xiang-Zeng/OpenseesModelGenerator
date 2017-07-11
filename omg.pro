@@ -7,10 +7,16 @@ SOURCES += main.cpp \
     OpenseesModelGenerator.cpp \
     Steel.cpp \
     Steel02.cpp \
-    ReinforcingSteel.cpp
+    ReinforcingSteel.cpp \
+    Concrete.cpp \
+    Concrete01.cpp \
+    Concrete02.cpp
 
 HEADERS += \
     OpenseesModelGenerator.h \
     Steel.h \
     Steel02.h \
-    ReinforcingSteel.h
+    ReinforcingSteel.h \
+    Concrete.h \
+    Concrete01.h \
+    Concrete02.h

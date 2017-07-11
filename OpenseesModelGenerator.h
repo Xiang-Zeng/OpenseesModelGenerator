@@ -8,9 +8,11 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
-#include "Steel.h"
+
 #include "Steel02.h"
 #include "ReinforcingSteel.h"
+#include "Concrete01.h"
+#include "Concrete02.h"
 
 using namespace std;
 
@@ -42,6 +44,8 @@ public:
     void WriteSection();
 
     vector<Steel *> steel;
+    vector<Concrete *> concrete;
+    vector<Concrete *> confinedCon;
 
 
 private:
