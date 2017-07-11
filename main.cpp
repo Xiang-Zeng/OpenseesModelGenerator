@@ -7,10 +7,10 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
     //const int nor=100;  // number of realization
-    OpenseesModelGenerator osm();
+    OpenseesModelGenerator osm(0);
 
     //string dir="";
 
@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     //    osm.writeModel();
     //}
 
-    osm.randPara();
-    osm.writeModel();
+    osm.GenRandPara();
+    osm.WriteModel();
 
     return 0;
 }
