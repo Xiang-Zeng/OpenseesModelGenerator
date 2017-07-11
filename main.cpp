@@ -20,6 +20,7 @@ int main()
     //    osm.writeModel();
     //}
 
+
     osm.GenRandPara();
     osm.WriteModel();
 

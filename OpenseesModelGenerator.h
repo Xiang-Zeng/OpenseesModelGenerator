@@ -35,7 +35,7 @@ public:
 
     void ReadRandPara();
     void GenRandPara();
-    double random(double min=0.0, double max=0.1);
+    double random(double min=0.0, double max=1.0);
 
     void WriteModel();
     void WriteMain();

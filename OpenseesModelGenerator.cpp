@@ -8,6 +8,12 @@ OpenseesModelGenerator::OpenseesModelGenerator
     _framePath=framePath;
     _nodePath=nodePath;
     _elementPath=elementPath;
+
+    if(_seed==0)
+        srand((unsigned)time(NULL));
+    else
+        srand(_seed);
+
     ReadRandPara();
 }
 
@@ -35,12 +41,12 @@ void OpenseesModelGenerator::ReadRandPara()
 
 double OpenseesModelGenerator::random(double min, double max)
 {
-    if(_seed==0)
-        srand((unsigned)time(NULL));
-    else
-        srand(_seed);
+//    if(_seed==0)
+//        srand((unsigned)time(NULL));
+//    else
+//        srand(_seed);
 
-    double r=rand() / double(RAND_MAX);
+    double r=(double)rand() / (double)RAND_MAX;
     r=(max-min)*r+min;
     return r;
 }
