@@ -8,6 +8,9 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+#include <io.h>
+#include <direct.h>
+#include <math.h>
 
 #include "Steel02.h"
 #include "ReinforcingSteel.h"
@@ -36,12 +39,15 @@ public:
     void ReadRandPara();
     void GenRandPara();
     double random(double min=0.0, double max=1.0);
+	int round(double r);
 
     void WriteModel();
     void WriteMain();
     void WriteSteel();
     void WriteConcrete();
     void WriteSection();
+
+    void WriteModel(int id);
 
     vector<Steel *> steel;
     vector<Concrete *> concrete;

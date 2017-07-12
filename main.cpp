@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    //const int nor=100;  // number of realization
+    const int nor=100;  // number of realization
     OpenseesModelGenerator osm(0);
 
     //string dir="";
@@ -21,8 +21,13 @@ int main()
     //}
 
 
-    osm.GenRandPara();
-    osm.WriteModel();
+    //osm.GenRandPara();
+    for(int i=0;i<nor;++i)
+    {
+        cout<<i<<"\t";
+        osm.WriteModel(i);
+    }
+
 
     return 0;
 }
