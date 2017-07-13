@@ -193,7 +193,9 @@ void OpenseesModelGenerator::WriteModel(int id){
         fout<<"set steelType \"ReinforcingSteel\"\n";
 
     fout<<"set fy "<<random(_randParas["fy"].min,_randParas["fy"].max) <<"\n"
+        <<"set fyh "<<random(_randParas["fyh"].min,_randParas["fyh"].max) <<"\n"
         <<"set fu "<<random(_randParas["fu"].min,_randParas["fu"].max) <<"\n"
+		<< "set fuh " << random(_randParas["fuh"].min, _randParas["fuh"].max) << "\n"
         <<"set E "<<random(_randParas["E0"].min,_randParas["E0"].max) <<"\n"
         <<"set b "<<random(_randParas["b"].min,_randParas["b"].max) <<"\n"
         <<"set R0 "<<random(_randParas["R0"].min,_randParas["R0"].max) <<"\n"
@@ -206,11 +208,22 @@ void OpenseesModelGenerator::WriteModel(int id){
         <<"set numDiv "<<round(random(_randParas["NumSubdivision"].min,_randParas["NumSubdivision"].max) )<<"\n"
         <<"set cover "<<random(_randParas["ConcreteCover"].min,_randParas["ConcreteCover"].max) <<"\n"
         <<"set flangeWidth "<<random(_randParas["FlangeWidth"].min,_randParas["FlangeWidth"].max) <<"\n"
-        <<"set hingeLength "<<random(_randParas["PlasticHingeLength"].min,_randParas["PlasticHingeLength"].max) <<"\n\n"
         <<"# Define element parameters\n"
         <<"# -----------------------\n"
-        <<"set numIntPt 5\n"
-        <<"set factorIg "<<random(_randParas["Ig"].min,_randParas["Ig"].max) <<"\n";
+        <<"set numIntPt "<<round(random(_randParas["numIntPt"].min,_randParas["numIntPt"].max) )<<"\n"
+        <<"set factorIg "<<random(_randParas["Ig"].min,_randParas["Ig"].max) <<"\n"
+        <<"set hingeLengthCol "<<random(_randParas["hingeLengthCol"].min,_randParas["hingeLengthCol"].max) <<"\n"
+        <<"set hingeLengthBeam "<<random(_randParas["hingeLengthBeam"].min,_randParas["hingeLengthBeam"].max) <<"\n";
+
+    if(random()>0.5)
+        fout<<"set colTransfType \"PDelta\"\n";
+    else
+        fout<<"set colTransfType \"Corotational\"\n";
+
+    if(random()>0.5)
+        fout<<"set beamTransfType \"PDelta\"\n";
+    else
+        fout<<"set beamTransfType \"Linear\"\n";
 
     fout.close();
 
