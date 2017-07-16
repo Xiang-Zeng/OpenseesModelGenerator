@@ -160,7 +160,8 @@ void OpenseesModelGenerator::WriteModel(int id){
     stringstream ss;
     ss<<id;
     mkdir(ss.str().c_str());
-    //make dir, name=ss.str();
+	string cmd = "Xcopy data " + ss.str() + "  /s /e /y";
+	system(cmd.c_str());
     ofstream fout(ss.str()+"/ModelParameters.tcl");
     fout<<"# ModelParameters.tcl\n"
         <<"# Units: [N,mm,C]\n\n"
@@ -190,18 +191,20 @@ void OpenseesModelGenerator::WriteModel(int id){
     if(random()>0.5)
         fout<<"set steelType \"Steel02\"\n";
     else
-        fout<<"set steelType \"ReinforcingSteel\"\n";
+        //fout<<"set steelType \"ReinforcingSteel\"\n";
+		fout << "set steelType \"Steel01\"\n";
 
-    fout<<"set fy "<<random(_randParas["fy"].min,_randParas["fy"].max) <<"\n"
-        <<"set fyh "<<random(_randParas["fyh"].min,_randParas["fyh"].max) <<"\n"
-        <<"set fu "<<random(_randParas["fu"].min,_randParas["fu"].max) <<"\n"
+	fout << "set fy " << random(_randParas["fy"].min, _randParas["fy"].max) << "\n"
+		<< "set fyh " << random(_randParas["fyh"].min, _randParas["fyh"].max) << "\n"
+		<< "set fu " << random(_randParas["fu"].min, _randParas["fu"].max) << "\n"
 		<< "set fuh " << random(_randParas["fuh"].min, _randParas["fuh"].max) << "\n"
-        <<"set E "<<random(_randParas["E0"].min,_randParas["E0"].max) <<"\n"
-        <<"set b "<<random(_randParas["b"].min,_randParas["b"].max) <<"\n"
-        <<"set R0 "<<random(_randParas["R0"].min,_randParas["R0"].max) <<"\n"
-        <<"set Esh [expr $E*$b]\n"
-        <<"set epssh "<<random(_randParas["esh"].min,_randParas["esh"].max) <<"\n"
-        <<"set epssu "<<random(_randParas["eult"].min,_randParas["eult"].max) <<"\n\n";
+		<< "set E " << random(_randParas["E0"].min, _randParas["E0"].max) << "\n"
+		<< "set epssh " << random(_randParas["esh"].min, _randParas["esh"].max) << "\n"
+		<< "set epssu " << random(_randParas["eult"].min, _randParas["eult"].max) << "\n"
+		//<<"set b "<<random(_randParas["b"].min,_randParas["b"].max) <<"\n"
+		<< "set b [expr ($fu-$fy)/($epssu-$fy/$E)/$E]\n"
+		<< "set Esh [expr $E*4.0*$b]\n"
+		<< "set R0 " << random(_randParas["R0"].min, _randParas["R0"].max) << "\n\n";
 
     fout<<"# Define section parameters\n"
         <<"# -----------------------\n"
