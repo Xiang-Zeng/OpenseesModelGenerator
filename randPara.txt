@@ -1,0 +1,25 @@
+name	distribution	para1	para2	...
+fpc	-33.1	-18.7
+epsc0	-0.0028	-0.0012
+Kres	0	0.3
+epsU	-0.0084	-0.0036
+lambda	0.15	0.25
+ft	0.75	1.32
+Ets	623	473
+fy	483	579
+fyh	378	452
+fu	728	872
+fuh 430 514
+E0	247977	283023
+b	0	0.025
+R0	10	20
+Esh	0	7075.575
+esh	0.002	0.004
+eult	0.236	0.288
+NumSubdivision	10	20
+ConcreteCover	10	15
+FlangeWidth	750	846
+Ig	0.3	0.7
+numIntPt 3 7
+hingeLengthCol	150	250
+hingeLengthBeam 250 350
