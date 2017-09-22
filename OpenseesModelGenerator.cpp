@@ -51,7 +51,7 @@ double OpenseesModelGenerator::random(double min, double max)
     return r;
 }
 
-void OpenseesModelGenerator::GenRandPara(){
+/*void OpenseesModelGenerator::GenRandPara(){
 
     //steel
     for(unsigned int i=0;i<steel.size();++i)
@@ -153,7 +153,7 @@ void OpenseesModelGenerator::WriteConcrete(){
 
 void OpenseesModelGenerator::WriteSection(){
 
-}
+}*/
 
 
 void OpenseesModelGenerator::WriteModel(int id){

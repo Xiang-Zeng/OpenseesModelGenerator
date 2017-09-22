@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <map>
 #include <vector>
 #include <stdlib.h>
@@ -12,10 +13,10 @@
 #include <direct.h>
 #include <math.h>
 
-#include "Steel02.h"
-#include "ReinforcingSteel.h"
-#include "Concrete01.h"
-#include "Concrete02.h"
+//#include "Steel02.h"
+//#include "ReinforcingSteel.h"
+//#include "Concrete01.h"
+//#include "Concrete02.h"
 
 using namespace std;
 
@@ -37,22 +38,22 @@ public:
     );
 
     void ReadRandPara();
-    void GenRandPara();
+    //void GenRandPara();
     double random(double min=0.0, double max=1.0);
 	int round(double r);
 
-    void WriteModel();
-    void WriteMain();
-    void WriteSteel();
-    void WriteConcrete();
-    void WriteSection();
+    //void WriteModel();
+    //void WriteMain();
+    //void WriteSteel();
+    //void WriteConcrete();
+    //void WriteSection();
 
     void WriteModel(int id);
 	void WriteModelHan(int id);
 
-    vector<Steel *> steel;
-    vector<Concrete *> concrete;
-    vector<Concrete *> confinedCon;
+    //vector<Steel *> steel;
+    //vector<Concrete *> concrete;
+    //vector<Concrete *> confinedCon;
 
 
 private:
