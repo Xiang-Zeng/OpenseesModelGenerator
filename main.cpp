@@ -32,7 +32,8 @@ int main()
     for(int i=0;i<nor;++i)
     {
         cout<<i<<"\t";
-        osm.WriteModel(i);
+        //osm.WriteModel(i);
+		osm.WriteModelHan(i);
     }
 	run2(nor);
 	

@@ -48,6 +48,7 @@ public:
     void WriteSection();
 
     void WriteModel(int id);
+	void WriteModelHan(int id);
 
     vector<Steel *> steel;
     vector<Concrete *> concrete;

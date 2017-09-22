@@ -232,6 +232,95 @@ void OpenseesModelGenerator::WriteModel(int id){
 
 }
 
+void OpenseesModelGenerator::WriteModelHan(int id) {
+	stringstream ss;
+	ss << id;
+	mkdir(ss.str().c_str());
+	string cmd = "Xcopy data " + ss.str() + "  /s /e /y";
+	system(cmd.c_str());
+	ofstream fout(ss.str() + "/ModelParameters.tcl");
+	fout << "# ModelParameters.tcl\n";
+	fout << "set ES  " << random(_randParas["ES"].min, _randParas["ES"].max) << "\n"
+		<< "set FYL(1) " << random(_randParas["FYL(1)"].min, _randParas["FYL(1)"].max) << "\n"
+		<< "set FU(1) " << random(_randParas["FU(1)"].min, _randParas["FU(1)"].max) << "\n"
+		<< "set ELONG(1) " << random(_randParas["ELONG(1)"].min, _randParas["ELONG(1)"].max) << "\n";
+	
+	if (random() > 0.5)
+		fout << "set STEELTYPE(1) \"Steel01\"\n";
+	else
+		fout << "set STEELTYPE(1) \"Steel02\"\n";
+
+	fout << "set R0(1) " << random(_randParas["R0(1)"].min, _randParas["R0(1)"].max) << "\n"
+		<< "set FYL(2) " << random(_randParas["FYL(2)"].min, _randParas["FYL(2)"].max) << "\n"
+		<< "set FU(2)  " << random(_randParas["FU(2)"].min, _randParas["FU(2)"].max) << "\n"
+		<< "set ELONG(2)  " << random(_randParas["ELONG(2)"].min, _randParas["ELONG(2)"].max) << "\n";
+
+	if (random() > 0.5)
+		fout << "set STEELTYPE(2) \"Steel01\"\n";
+	else
+		fout << "set STEELTYPE(2) \"Steel02\"\n";
+
+	fout << "set R0(2)  " << random(_randParas["R0(2)"].min, _randParas["R0(2)"].max) << "\n"
+		<< "set nfdy1  " << round( random(_randParas["nfdy1"].min, _randParas["nfdy1"].max) )<< "\n"
+		<< "set nfty1  " << round( random(_randParas["nfty1"].min, _randParas["nfty1"].max)) << "\n"
+		<< "set nfdz1  " << round(random(_randParas["nfdz1"].min, _randParas["nfdz1"].max)) << "\n"
+		<< "set nftz1  " << round(random(_randParas["nftz1"].min, _randParas["nftz1"].max)) << "\n"
+		<< "set nfdw1  " << round(random(_randParas["nfdw1"].min, _randParas["nfdw1"].max)) << "\n"
+		<< "set nftw1  " << round(random(_randParas["nftw1"].min, _randParas["nftw1"].max)) << "\n"
+		<< "set nfbf1  " << round(random(_randParas["nfbf1"].min, _randParas["nfbf1"].max)) << "\n"
+		<< "set nftf1  " << round(random(_randParas["nftf1"].min, _randParas["nftf1"].max)) << "\n"
+		<< "set nfdy2  " << round(random(_randParas["nfdy2"].min, _randParas["nfdy2"].max)) << "\n"
+		<< "set nfty2  " << round(random(_randParas["nfty2"].min, _randParas["nfty2"].max)) << "\n"
+		<< "set nfdz2  " << round(random(_randParas["nfdz2"].min, _randParas["nfdz2"].max)) << "\n"
+		<< "set nftz2  " << round(random(_randParas["nftz2"].min, _randParas["nftz2"].max)) << "\n"
+		<< "set nfdw2  " << round(random(_randParas["nfdw2"].min, _randParas["nfdw2"].max)) << "\n"
+		<< "set nftw2  " << round(random(_randParas["nftw2"].min, _randParas["nftw2"].max)) << "\n"
+		<< "set nfbf2  " << round(random(_randParas["nfbf2"].min, _randParas["nfbf2"].max)) << "\n"
+		<< "set nftf2  " << round(random(_randParas["nftf2"].min, _randParas["nftf2"].max)) << "\n";
+
+	if (random() > 0.5)
+		fout << "set Col_Transf \"PDelta\"\n";
+	else
+		fout << "set Col_Transf \"Corotational\"\n";
+
+	if (random() > 0.5)
+		fout << "set Beam_Transf \"PDelta\"\n";
+	else
+		fout << "set Beam_Transf \"Linear\"\n";
+
+	fout << "set nip(1)  " << round( random(_randParas["nip(1)"].min, _randParas["nip(1)"].max) )<< "\n"
+		<< "set nip(2)  " << round(random(_randParas["nip(2)"].min, _randParas["nip(2)"].max) )<< "\n"
+		<< "set jointKMod  " << random(_randParas["jointKMod"].min, _randParas["jointKMod"].max) << "\n"
+		<< "set beamKMod  " << random(_randParas["beamKMod"].min, _randParas["beamKMod"].max) << "\n"
+		<< "set girderKMod  " << random(_randParas["girderKMod"].min, _randParas["girderKMod"].max) << "\n";
+
+	if (random() > 0.5)
+		fout << "set dampingType \"initial\"\n";
+	else
+		fout << "set dampingType \"committed\"\n";
+
+	fout << "set zeta2  " << random(_randParas["zeta2"].min, _randParas["zeta2"].max) << "\n"
+		<< "set MYMYP  " << random(_randParas["MYMYP"].min, _randParas["MYMYP"].max) << "\n"
+		<< "set MCMY  " << random(_randParas["MCMY"].min, _randParas["MCMY"].max) << "\n"
+		<< "set theta_u  " << random(_randParas["theta_u"].min, _randParas["theta_u"].max) << "\n"
+		<< "set Lamda1(1)  " << random(_randParas["Lamda1(1)"].min, _randParas["Lamda1(1)"].max) << "\n"
+		<< "set theta_p1(1)  " << random(_randParas["theta_p1(1)"].min, _randParas["theta_p1(1)"].max) << "\n"
+		<< "set theta_pc1(1)  " << random(_randParas["theta_pc1(1)"].min, _randParas["theta_pc1(1)"].max) << "\n"
+		<< "set Lamda1(2)  " << random(_randParas["Lamda1(2)"].min, _randParas["Lamda1(2)"].max) << "\n"
+		<< "set theta_p1(2)  " << random(_randParas["theta_p1(2)"].min, _randParas["theta_p1(2)"].max) << "\n"
+		<< "set theta_pc1(2)  " << random(_randParas["theta_pc1(2)"].min, _randParas["theta_pc1(2)"].max) << "\n"
+		<< "set Lamda1(3)  " << random(_randParas["Lamda1(3)"].min, _randParas["Lamda1(3)"].max) << "\n"
+		<< "set theta_p1(3)  " << random(_randParas["theta_p1(3)"].min, _randParas["theta_p1(3)"].max) << "\n"
+		<< "set theta_pc1(3)  " << random(_randParas["theta_pc1(3)"].min, _randParas["theta_pc1(3)"].max) << "\n"
+		<< "set Lamda2(1)  " << random(_randParas["Lamda2(1)"].min, _randParas["Lamda2(1)"].max) << "\n"
+		<< "set theta_p2(1)  " << random(_randParas["theta_p2(1)"].min, _randParas["theta_p2(1)"].max) << "\n"
+		<< "set theta_pc2(1)  " << random(_randParas["theta_pc2(1)"].min, _randParas["theta_pc2(1)"].max) << "\n";
+
+	fout.close();
+
+}
+
+
 int OpenseesModelGenerator::round(double r)
 {
 	return (r > 0.0) ? floor(r + 0.5) : ceil(r - 0.5);
