@@ -30,7 +30,7 @@ public:
     };
 
     OpenseesModelGenerator(
-        int seed=0,
+        int seed,
         string randPath="randPara.txt",
         string framePath="model/frame.tcl",
         string nodePath="model/node.tcl",
